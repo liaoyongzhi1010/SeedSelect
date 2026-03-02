@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.eggs/
+dist/
+build/
+.venv/
+
+# Outputs (large files)
+outputs/
+logs/
+*.ply
+*.obj
+*.glb
+
+# Data
+data/data_paths.yaml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Third-party repos (clone separately)
+third_party/InstantMesh/
+third_party/LGM/
+third_party/Wonder3D/
+third_party/Difix3D/
