@@ -101,6 +101,25 @@ PYOPENGL_PLATFORM=egl python scripts/difix_multiview.py \
     --phase 2
 ```
 
+### Run refiner-metric sensitivity study
+
+```bash
+python scripts/sensitivity_refiner_metric.py \
+    --results_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/results.json \
+    --difix_scores_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/difix_multiview_scores.json \
+    --clip_scores_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/clip_scoring_results.json \
+    --out_dir outputs/sensitivity
+
+python scripts/export_sensitivity_latex.py \
+    --input_json outputs/sensitivity/refiner_metric_sensitivity.json \
+    --output_tex outputs/sensitivity/refiner_metric_sensitivity_table.tex
+```
+
+This writes paper-ready outputs:
+- `outputs/sensitivity/refiner_metric_sensitivity.json`
+- `outputs/sensitivity/refiner_metric_sensitivity.csv`
+- `outputs/sensitivity/refiner_metric_sensitivity_table.tex`
+
 ## Project Structure
 
 ```
@@ -114,6 +133,8 @@ SeedSelect/
 │   ├── lgm_multiseed.py           # LGM backbone support
 │   ├── score_lgm_seedselect.py    # LGM scoring
 │   ├── wonder3d_multiseed.py      # Wonder3D backbone support
+│   ├── sensitivity_refiner_metric.py  # Refiner x metric sensitivity evaluation
+│   ├── export_sensitivity_latex.py    # Convert sensitivity JSON to LaTeX table
 │   └── plot_*.py                  # Figure generation
 ├── src/
 │   ├── config.py                  # Configuration loading
