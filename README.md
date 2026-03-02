@@ -120,6 +120,20 @@ This writes paper-ready outputs:
 - `outputs/sensitivity/refiner_metric_sensitivity.csv`
 - `outputs/sensitivity/refiner_metric_sensitivity_table.tex`
 
+### Run confidence-abstain guardrail sweep
+
+```bash
+python scripts/guardrail_abstain.py \
+    --results_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/results.json \
+    --scores_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/difix_multiview_scores.json \
+    --score_key scores.difix_mv_mean \
+    --out_dir outputs/guardrail
+
+python scripts/export_guardrail_latex.py \
+    --input_json outputs/guardrail/guardrail_abstain_results.json \
+    --output_tex outputs/guardrail/guardrail_abstain_table.tex
+```
+
 ## Project Structure
 
 ```
@@ -135,6 +149,8 @@ SeedSelect/
 │   ├── wonder3d_multiseed.py      # Wonder3D backbone support
 │   ├── sensitivity_refiner_metric.py  # Refiner x metric sensitivity evaluation
 │   ├── export_sensitivity_latex.py    # Convert sensitivity JSON to LaTeX table
+│   ├── guardrail_abstain.py           # Confidence-based fallback policy sweep
+│   ├── export_guardrail_latex.py      # Convert guardrail sweep to LaTeX table
 │   └── plot_*.py                  # Figure generation
 ├── src/
 │   ├── config.py                  # Configuration loading
