@@ -1,0 +1,9 @@
+\subsection{Failure Guardrail via Confidence Abstention}
+\label{sec:guardrail-abstain}
+
+We introduce a confidence-aware abstention policy: if the proxy margin between top-1 and top-2 candidates is below a threshold, we fallback to the default seed instead of forcing a potentially unreliable selection.
+
+\input{table_seedselect/guardrail_abstain_table}
+
+\noindent\textbf{Observation.}
+A simple abstention mechanism improves expected CD while reducing severe failures, indicating that risk-aware selection is a practical add-on for deployment.

@@ -1,0 +1,13 @@
+\begin{table}[t]
+  \centering
+  \caption{Confidence-abstain guardrail on GSO-300 ($K{=}4$).}
+  \label{tab:guardrail_abstain}
+  \begin{tabular}{lcccc}
+    \toprule
+    Policy & Abstain(\%) & Improv.(\%) & Worst(\%) & $p$-value \\
+    \midrule
+    SeedSelect (no guardrail) & 0.0 & +1.46 & 18.0 & 0.007 \\
+    SeedSelect + abstain & 30.0 & +1.70 & 17.7 & 0.005 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
