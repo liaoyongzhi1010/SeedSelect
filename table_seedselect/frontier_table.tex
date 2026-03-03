@@ -1,0 +1,15 @@
+\begin{table}[t]
+  \centering
+  \caption{Compute-matched quality-time-risk frontier (inference-time only). Time includes rendering, feature extraction, and verifier forward.}
+  \label{tab:frontier_qtr}
+  \begin{tabular}{lccccc}
+    \toprule
+    Method & Improv.(\%) & Severe$>$5\%(\%) & Worst(\%) & Time(s/object) & Coverage(\%) \\
+    \midrule
+    Default (seed42)         & +0.00 & 0.0  & 0.0  & 0.00  & 100 \\
+    SeedSelect (LPIPS)       & +1.39 & 12.7 & 14.7 & 17.36 & 100 \\
+    LearnedFusion Ranker     & +0.65 & 13.7 & 19.0 & 17.36 & 100 \\
+    SeedSelect + Guardrail   & +1.72 & 5.0  & 14.7 & 17.36 & 60 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,0 +1,22 @@
+\begin{table}[t]
+  \centering
+  \caption{Mechanism model validation on GSO-$K16$ subset (50 objects). We fit on $K\in\{2,4,8\}$ and predict held-out $K\in\{6,10,12,14,16\}$.}
+  \label{tab:k_model_validation}
+  \begin{tabular}{lcccc}
+    \toprule
+    $K$ & Measured $\Delta_K$ & Pred. $\Delta_K$ & Rel. Err.(\%) & Split \\
+    \midrule
+    2  & 0.0041 & 0.0074 & -- & fit \\
+    4  & 0.0088 & 0.0122 & -- & fit \\
+    8  & 0.0150 & 0.0151 & -- & fit \\
+    6  & 0.0134 & 0.0141 & +5.1 & held-out \\
+    10 & 0.0199 & 0.0160 & -20.0 & held-out \\
+    12 & 0.0180 & 0.0165 & -8.0 & held-out \\
+    14 & 0.0177 & 0.0168 & -5.1 & held-out \\
+    16 & 0.0168 & 0.0172 & +2.3 & held-out \\
+    \midrule
+    \multicolumn{2}{l}{Held-out $R^2$} & \multicolumn{3}{c}{0.157} \\
+    \multicolumn{2}{l}{Held-out MAPE} & \multicolumn{3}{c}{8.10\%} \\
+    \bottomrule
+  \end{tabular}
+\end{table}

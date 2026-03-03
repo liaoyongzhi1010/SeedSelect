@@ -1,0 +1,13 @@
+\subsection{Mechanism Modeling and Held-Out $K$ Prediction}
+\label{sec:mechanism-model}
+
+We explicitly model SeedSelect's expected gain as
+\begin{equation}
+\Delta_K = G_K\,R_K,
+\end{equation}
+where $G_K$ is the oracle gain available at budget $K$ and $R_K$ is the selector's gap-recovery ratio. We fit $G_K$ with a power-law saturation $G_\infty(1-K^{-\gamma})$, and fit $R_K$ as a function of measured pairwise ranking quality $p_K$.
+
+\input{table_seedselect/k_model_validation_table}
+
+\noindent\textbf{Observation.}
+The fitted model predicts held-out $K$ with 8.10\% MAPE, showing that observed scaling behavior is not only descriptive but quantitatively predictable under the proposed decomposition.

@@ -1,0 +1,13 @@
+\subsection{Compute-Matched Frontier: Quality, Cost, and Tail Risk}
+\label{sec:frontier-qtr}
+
+We report a compute-matched frontier where all methods share the same inference-time budget accounting protocol:
+\begin{equation}
+T_{\text{total}} = T_{\text{render}} + T_{\text{feature}} + T_{\text{verifier}}.
+\end{equation}
+For the $K{=}4$ setting, measured runtime is 17.36s/object for methods using Difix-based features.
+
+\input{table_seedselect/frontier_table}
+
+\noindent\textbf{Observation.}
+Under matched inference cost, the learned verifier underperforms hand-crafted LPIPS scoring in both quality and tail risk; adding a confidence guardrail provides the best risk-quality tradeoff at reduced coverage.

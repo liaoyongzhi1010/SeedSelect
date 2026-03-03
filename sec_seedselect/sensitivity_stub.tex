@@ -3,9 +3,10 @@
 
 To address dependency concerns, we evaluate SeedSelect under multiple refiner--metric pairings on GSO-300 ($K{=}4$).
 \Cref{tab:refiner_metric_sensitivity} shows that Difix3D+ $\times$ LPIPS remains the strongest setting (+1.39\% CD, 56.7\% pairwise), while alternative discrepancy metrics are weaker: 1-SSIM retains a positive but reduced gain (+0.76\%), and L1 underperforms.
+We further include a learned multi-metric logistic ranker baseline, which improves over random selection (+0.65\%) but still trails the hand-crafted LPIPS verifier.
 No-refinement alternatives (PSNR, CLIP, DINOv2) remain near or below random-level selection quality.
 
 \input{table_seedselect/refiner_metric_sensitivity_table}
 
 \noindent\textbf{Takeaway.}
-The inference-time generate-and-verify paradigm remains effective across scoring choices, and performance peaks when combining a dedicated refiner with a perceptual discrepancy metric.
+On the primary InstantMesh setting, the policy is robust to several scoring variants, and the best operating point is obtained with a dedicated refiner plus perceptual discrepancy (Difix3D+ + LPIPS). We therefore frame the method as a reliability-aware selection policy rather than a universally transferable verifier.
