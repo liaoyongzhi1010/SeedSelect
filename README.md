@@ -134,6 +134,21 @@ python scripts/export_guardrail_latex.py \
     --output_tex outputs/guardrail/guardrail_abstain_table.tex
 ```
 
+### Run full GPU multi-metric sensitivity (LPIPS / L1 / 1-SSIM)
+
+```bash
+PYOPENGL_PLATFORM=egl /root/miniconda3/envs/difix3d/bin/python scripts/difix_multimetric_gpu.py \
+    --results_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/results.json \
+    --render_dir /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/renders_mv \
+    --out_json outputs/multimetric/difix_multimetric_scores_gso300.json
+
+python scripts/sensitivity_refiner_metric.py \
+    --results_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/results.json \
+    --difix_scores_json outputs/multimetric/difix_multimetric_scores_gso300.json \
+    --clip_scores_json /root/eccv/DepthRefine3D/outputs/multiseed/gso_full/clip_scoring_results.json \
+    --out_dir outputs/sensitivity_multimetric
+```
+
 ## Project Structure
 
 ```
@@ -151,6 +166,7 @@ SeedSelect/
 │   ├── export_sensitivity_latex.py    # Convert sensitivity JSON to LaTeX table
 │   ├── guardrail_abstain.py           # Confidence-based fallback policy sweep
 │   ├── export_guardrail_latex.py      # Convert guardrail sweep to LaTeX table
+│   ├── difix_multimetric_gpu.py       # GPU full-run LPIPS/L1/SSIM scoring
 │   └── plot_*.py                  # Figure generation
 ├── src/
 │   ├── config.py                  # Configuration loading

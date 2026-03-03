@@ -33,6 +33,7 @@ class EvalRow:
     gap_closed_pct: float
     win_rate_pct: float
     worst_pick_rate_pct: float
+    severe_degrade_rate_pct: float
     p_value: float
     selected_cd: float
     default_cd: float
@@ -64,6 +65,7 @@ def evaluate(
 
     wins = 0
     worst_pick = 0
+    severe_degrade = 0
     abstains = 0
     used = 0
 
@@ -100,6 +102,8 @@ def evaluate(
 
         if cd_s < cd_d:
             wins += 1
+        elif cd_s > cd_d and (cd_s - cd_d) / max(cd_d, 1e-12) > 0.05:
+            severe_degrade += 1
         if selected == worst:
             worst_pick += 1
 
@@ -118,6 +122,7 @@ def evaluate(
     abstain_rate = abstains / max(used, 1) * 100.0
     win_rate = wins / max(used, 1) * 100.0
     worst_rate = worst_pick / max(used, 1) * 100.0
+    severe_rate = severe_degrade / max(used, 1) * 100.0
 
     try:
         pval = float(wilcoxon(selected_cds, default_cds, alternative="less").pvalue)
@@ -131,6 +136,7 @@ def evaluate(
         gap_closed_pct=float(gap),
         win_rate_pct=float(win_rate),
         worst_pick_rate_pct=float(worst_rate),
+        severe_degrade_rate_pct=float(severe_rate),
         p_value=pval,
         selected_cd=selected_mean,
         default_cd=default_mean,
@@ -147,6 +153,7 @@ def rows_to_csv(rows: List[EvalRow], path: str):
         "gap_closed_pct",
         "win_rate_pct",
         "worst_pick_rate_pct",
+        "severe_degrade_rate_pct",
         "p_value",
         "selected_cd",
         "default_cd",
@@ -167,6 +174,7 @@ def main():
     parser.add_argument("--score_key", default="scores.difix_mv_mean")
     parser.add_argument("--default_seed", default="42")
     parser.add_argument("--target_worst_pct", type=float, default=10.0)
+    parser.add_argument("--target_severe_pct", type=float, default=5.0)
     parser.add_argument("--out_dir", default=DEFAULT_OUT_DIR)
     args = parser.parse_args()
 
@@ -204,11 +212,21 @@ def main():
     rows = [evaluate(gt, proxy, t, default_seed=args.default_seed) for t in thresholds]
     rows = sorted(rows, key=lambda x: x.threshold)
 
-    feasible = [r for r in rows if r.worst_pick_rate_pct <= args.target_worst_pct]
+    feasible = [
+        r
+        for r in rows
+        if r.worst_pick_rate_pct <= args.target_worst_pct
+        and r.severe_degrade_rate_pct <= args.target_severe_pct
+    ]
     if feasible:
         best = max(feasible, key=lambda r: r.improvement_pct)
     else:
-        best = max(rows, key=lambda r: (r.improvement_pct - 0.05 * r.worst_pick_rate_pct))
+        best = max(
+            rows,
+            key=lambda r: (
+                r.improvement_pct - 0.05 * r.worst_pick_rate_pct - 0.08 * r.severe_degrade_rate_pct
+            ),
+        )
 
     json_path = os.path.join(args.out_dir, "guardrail_abstain_results.json")
     csv_path = os.path.join(args.out_dir, "guardrail_abstain_results.csv")
@@ -217,6 +235,7 @@ def main():
         json.dump(
             {
                 "target_worst_pct": args.target_worst_pct,
+                "target_severe_pct": args.target_severe_pct,
                 "best": best.__dict__,
                 "sweep": [r.__dict__ for r in rows],
             },
@@ -230,6 +249,7 @@ def main():
     print(
         f"  thr={best.threshold:.6f} | abstain={best.abstain_rate_pct:.1f}% | "
         f"improv={best.improvement_pct:+.2f}% | worst={best.worst_pick_rate_pct:.1f}% | "
+        f"severe={best.severe_degrade_rate_pct:.1f}% | "
         f"p={best.p_value:.3g}"
     )
 

@@ -36,20 +36,22 @@ def main():
     lines.append("  \\centering")
     lines.append("  \\caption{Confidence-abstain guardrail on GSO-300 ($K{=}4$).}")
     lines.append("  \\label{tab:guardrail_abstain}")
-    lines.append("  \\begin{tabular}{lcccc}")
+    lines.append("  \\begin{tabular}{lccccc}")
     lines.append("    \\toprule")
-    lines.append("    Policy & Abstain(\\%) & Improv.(\\%) & Worst(\\%) & $p$-value \\\\")
+    lines.append("    Policy & Abstain(\\%) & Improv.(\\%) & Worst(\\%) & Severe$>$5\\%(\\%) & $p$-value \\\\")
     lines.append("    \\midrule")
     lines.append(
         "    "
         + f"SeedSelect (no guardrail) & {baseline['abstain_rate_pct']:.1f} & "
         + f"{baseline['improvement_pct']:+.2f} & {baseline['worst_pick_rate_pct']:.1f} & "
+        + f"{baseline['severe_degrade_rate_pct']:.1f} & "
         + f"{fmt_p(baseline['p_value'])} \\\\"
     )
     lines.append(
         "    "
         + f"SeedSelect + abstain & {best['abstain_rate_pct']:.1f} & "
         + f"{best['improvement_pct']:+.2f} & {best['worst_pick_rate_pct']:.1f} & "
+        + f"{best['severe_degrade_rate_pct']:.1f} & "
         + f"{fmt_p(best['p_value'])} \\\\"
     )
     lines.append("    \\bottomrule")

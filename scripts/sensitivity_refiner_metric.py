@@ -236,25 +236,41 @@ def build_builtin_variants(args) -> List[Variant]:
     variants: List[Variant] = []
 
     difix = load_json(args.difix_scores_json)
-    for key, metric_name in [
-        ("scores.difix_mv_mean", "LPIPS"),
-        ("scores.difix_front", "LPIPS-front"),
-        ("scores.difix_mv_max", "LPIPS-max"),
-        ("scores.difix_mv_front_weighted", "LPIPS-front-weighted"),
-    ]:
-        try:
-            score_dict = normalize_score_dict(nested_get(difix, key))
-            variants.append(
-                Variant(
-                    name=f"Difix3D+ x {metric_name}",
-                    refiner="Difix3D+",
-                    metric=metric_name,
-                    scores=score_dict,
-                    higher_is_better=True,
-                )
+    difix_keys = {
+        "scores.difix_mv_mean": ("Difix3D+", "LPIPS"),
+        "scores.difix_front": ("Difix3D+", "LPIPS-front"),
+        "scores.difix_mv_max": ("Difix3D+", "LPIPS-max"),
+        "scores.difix_mv_front_weighted": ("Difix3D+", "LPIPS-front-weighted"),
+        "scores.difix_mv_l1": ("Difix3D+", "L1"),
+        "scores.difix_front_l1": ("Difix3D+", "L1-front"),
+        "scores.difix_mv_ssim": ("Difix3D+", "1-SSIM"),
+        "scores.difix_front_ssim": ("Difix3D+", "1-SSIM-front"),
+    }
+    for key, (refiner_name, metric_name) in difix_keys.items():
+        if key.count(".") == 1:
+            # Legacy fallback: top-level keys from older exports.
+            level_key = key.split(".", 1)[1]
+            if level_key in difix and "scores" not in difix:
+                score_dict = normalize_score_dict(difix[level_key])
+            else:
+                try:
+                    score_dict = normalize_score_dict(nested_get(difix, key))
+                except KeyError:
+                    continue
+        else:
+            try:
+                score_dict = normalize_score_dict(nested_get(difix, key))
+            except KeyError:
+                continue
+        variants.append(
+            Variant(
+                name=f"{refiner_name} x {metric_name}",
+                refiner=refiner_name,
+                metric=metric_name,
+                scores=score_dict,
+                higher_is_better=True,
             )
-        except KeyError:
-            continue
+        )
 
     clip_data = load_json(args.clip_scores_json)
     per_clip = clip_data.get("per_object_clip", {})
