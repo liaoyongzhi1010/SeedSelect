@@ -2,7 +2,8 @@
 \label{sec:sensitivity-refiner-metric}
 
 To address dependency concerns, we evaluate SeedSelect under multiple refiner--metric pairings on GSO-300 ($K{=}4$).
-\Cref{tab:refiner_metric_sensitivity} shows that the full Difix3D+ $\times$ LPIPS configuration remains the strongest, while weaker no-refinement alternatives (PSNR, CLIP, DINOv2) stay near or below random-level selection quality.
+\Cref{tab:refiner_metric_sensitivity} shows that Difix3D+ $\times$ LPIPS remains the strongest setting (+1.39\% CD, 56.7\% pairwise), while alternative discrepancy metrics are weaker: 1-SSIM retains a positive but reduced gain (+0.76\%), and L1 underperforms.
+No-refinement alternatives (PSNR, CLIP, DINOv2) remain near or below random-level selection quality.
 
 \input{table_seedselect/refiner_metric_sensitivity_table}
 
