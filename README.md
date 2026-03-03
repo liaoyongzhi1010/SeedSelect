@@ -149,6 +149,33 @@ python scripts/sensitivity_refiner_metric.py \
     --out_dir outputs/sensitivity_multimetric
 ```
 
+### Run fatal-point closure bundle (mechanism / proxy gap / risk / frontier)
+
+```bash
+# 1) Mechanism model: Delta_K = G_K * R_K + held-out K prediction
+/root/eccv/DepthRefine3D/.venv/bin/python scripts/k_model_fit_validate.py \
+    --out_dir outputs/mechanism
+
+# 2) Independent GT geometry closure (InstantMesh + LGM, with CI)
+/root/eccv/DepthRefine3D/.venv/bin/python scripts/proxy_gap_closure_eval.py \
+    --out_dir outputs/proxy_gap_closure
+
+# 3) Tail-risk and guardrail validation (val-threshold, frozen-test)
+/root/eccv/DepthRefine3D/.venv/bin/python scripts/risk_tail_guardrail_analysis.py \
+    --out_dir outputs/risk_tail
+
+# 4) Compute-matched quality-time-risk frontier
+/root/eccv/DepthRefine3D/.venv/bin/python scripts/quality_time_risk_frontier.py \
+    --out_dir outputs/frontier
+```
+
+Key artifacts:
+- `outputs/mechanism/k_model_fit_results.json`
+- `outputs/mechanism/k_model_validation.pdf`
+- `outputs/proxy_gap_closure/proxy_gap_closure_results.json`
+- `outputs/risk_tail/risk_tail_guardrail_results.json`
+- `outputs/frontier/quality_time_risk_frontier.json`
+
 ## Project Structure
 
 ```
