@@ -27,6 +27,26 @@ From `results/main/pairwise_ranking_results_full.json`:
 
 - Pairwise win rate (SeedSelect vs PSNR): 55.10% vs 50.48%
 
+## Visual Examples
+
+### Example A: `2_of_Jenga_Classic_Game` (clear win)
+
+| Input | Default (seed42) | Selected (seed0) |
+|---|---|---|
+| ![](examples/gso_k8_examples/2_of_Jenga_Classic_Game/input.png) | ![](examples/gso_k8_examples/2_of_Jenga_Classic_Game/seeds_render/seed42.png) | ![](examples/gso_k8_examples/2_of_Jenga_Classic_Game/seeds_render/seed0.png) |
+
+### Example B: `Mens_Billfish_Slip_On_in_Coffee_e8bPKE9Lfgo` (selected != default)
+
+| Input | Default (seed42) | Selected (seed0) | Oracle by CD (seed5) |
+|---|---|---|---|
+| ![](examples/gso_k8_examples/Mens_Billfish_Slip_On_in_Coffee_e8bPKE9Lfgo/input.png) | ![](examples/gso_k8_examples/Mens_Billfish_Slip_On_in_Coffee_e8bPKE9Lfgo/seeds_render/seed42.png) | ![](examples/gso_k8_examples/Mens_Billfish_Slip_On_in_Coffee_e8bPKE9Lfgo/seeds_render/seed0.png) | ![](examples/gso_k8_examples/Mens_Billfish_Slip_On_in_Coffee_e8bPKE9Lfgo/seeds_render/seed5.png) |
+
+### Example C: `OXO_Soft_Works_Can_Opener_SnapLock` (tie case)
+
+| Input | Default (seed42) | Selected (seed42) |
+|---|---|---|
+| ![](examples/gso_k8_examples/OXO_Soft_Works_Can_Opener_SnapLock/input.png) | ![](examples/gso_k8_examples/OXO_Soft_Works_Can_Opener_SnapLock/seeds_render/seed42.png) | ![](examples/gso_k8_examples/OXO_Soft_Works_Can_Opener_SnapLock/seeds_render/seed42.png) |
+
 ## Repository Layout
 
 - `code/seedselect_core/`: core SeedSelect code snapshot (`configs/`, `scripts/`, `src/`, `requirements.txt`)
