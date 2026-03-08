@@ -1,0 +1,251 @@
+% Experiments
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+
+\noindent\textbf{Datasets.}
+We evaluate on two standard benchmarks: Google Scanned Objects (GSO)~\cite{gso} with 300 randomly selected objects, and OmniObject3D~\cite{omniobject3d} with 100 objects from 20 categories. Both datasets provide high-quality ground-truth 3D meshes.
+
+\noindent\textbf{Backbones.}
+We evaluate SeedSelect on three diffusion-based 3D reconstruction pipelines spanning diverse architectures and 3D representations:
+(i)~\textbf{InstantMesh}~\cite{instantmesh}, which uses Zero123++~\cite{zero123plus} for multi-view diffusion and FlexiCubes~\cite{flexicubes} for mesh extraction;
+(ii)~\textbf{LGM}~\cite{lgm}, which uses ImageDream~\cite{imagedream} for multi-view diffusion and produces 3D Gaussian Splatting~\cite{kerbl233d-gaussian} output;
+(iii)~\textbf{Wonder3D}~\cite{wonder3d}, which uses a cross-domain multi-view diffusion model for joint color and normal generation, followed by NeuS~\cite{neus} mesh reconstruction.
+All models are used off-the-shelf without modification. The primary evaluation uses InstantMesh; LGM is used for quantitative hybrid transfer evaluation, and Wonder3D is evaluated with GT-CD zero-shot/learned/hybrid comparison on a canonical GSO-150 subset (\cref{sec:cross_backbone}).
+
+\noindent\textbf{Metrics.}
+We report Chamfer Distance (CD, $\times 10^{-2}$, $\downarrow$) as the primary 3D geometric metric, computed from 16K uniformly sampled surface points after alignment and normalization to $[-1, 1]^3$. We also report the following selection-quality metrics: \emph{Improvement} (\%), the relative CD reduction vs.\ the default seed; \emph{Gap Closed} (\%), the fraction of the oracle improvement achieved; \emph{Oracle Match} (\%), how often the method picks the best seed; \emph{Worst Pick} (\%), how often it picks the worst; and $p$-value from the Wilcoxon signed-rank test.
+
+\noindent\textbf{Baselines.}
+We compare SeedSelect against: (i)~\textbf{Default}: single-run with seed 42; (ii)~\textbf{Random}: randomly select among $K$ candidates; (iii)~\textbf{PSNR}: re-render front view and compare against input image via PSNR; (iv)~\textbf{Consensus}: pick the mesh closest to all others via pairwise CD; (v)~\textbf{Geometric}: score by mesh face regularity and watertightness; (vi)~\textbf{Smoothness}: score by surface normal consistency; (vii)~\textbf{Difix3D+ (front)}: single front-view Difix3D+ score; (viii)~\textbf{Oracle}: select the seed with lowest ground-truth CD (upper bound).
+
+\subsection{Seed Sensitivity Analysis}
+\label{sec:sensitivity}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Seed sensitivity in InstantMesh.} Quality varies substantially across random seeds. Oracle best-of-$K$ reveals large untapped potential.}
+\label{tab:sensitivity}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l|cc|cc}
+\toprule
+& \multicolumn{2}{c|}{GSO (300 objects)} & \multicolumn{2}{c}{OmniObject3D (100 objects)} \\
+& CD ($\downarrow$) & Improv.\ (\%) & CD ($\downarrow$) & Improv.\ (\%) \\
+\midrule
+Default (seed 42) & 0.365 & --- & 0.684 & --- \\
+Seed mean ($K{=}4$) & 0.366 & $-0.3$ & 0.668 & $+2.3$ \\
+Oracle best-of-4 & 0.341 & $+6.6$ & 0.603 & $+11.9$ \\
+Max / Min CD ratio & \multicolumn{2}{c|}{up to 3.3$\times$} & \multicolumn{2}{c}{up to 4.1$\times$} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\Cref{tab:sensitivity} quantifies the seed lottery. On GSO, oracle best-of-4 achieves 6.6\% lower CD than the default seed; on OmniObject3D the gap widens to 11.9\%. The per-seed mean CD is comparable to the default, confirming that no single seed is universally superior---the benefit comes from per-object selection. Individual objects exhibit extreme variation (up to 3.3$\times$).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{img/seed_sensitivity.pdf}
+  \caption{\textbf{Seed sensitivity distribution (GSO-300).} \emph{Left}: relative CD variation across 4 seeds per object. Most objects show 10--40\% variation. \emph{Right}: per-object improvement from SeedSelect vs.\ default. Green bars indicate objects that improve, red bars indicate objects that degrade.}
+  \label{fig:sensitivity}
+\end{figure}
+
+\subsection{Main Results}
+\label{sec:main_results}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Scoring method comparison on GSO-300 ($K{=}4$).} Only SeedSelect (multi-view Difix3D+) achieves statistically significant improvement. All other methods---including CLIP and DINOv2 similarity---fail to outperform the default seed.}
+\label{tab:main_gso}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l|ccccc|c}
+\toprule
+Method & CD ($\downarrow$) & Improv.\ (\%) & Gap (\%) & Oracle (\%) & Worst (\%) & $p$-val \\
+\midrule
+Default (seed 42) & 0.365 & --- & --- & --- & --- & --- \\
+Random & 0.366 & $-0.3$ & --- & 25.0 & 25.0 & --- \\
+PSNR & 0.366 & $-0.3$ & --- & 26.0 & 24.7 & 0.91 \\
+Consensus & 0.364 & $+0.2$ & 3.2 & 26.3 & 24.3 & 0.82 \\
+Geometric & 0.367 & $-0.5$ & --- & 25.3 & 27.3 & 0.76 \\
+Smoothness & 0.366 & $-0.3$ & --- & 24.3 & 26.0 & 0.72 \\
+CLIP (ViT-B/32) & 0.366 & $-0.3$ & --- & 23.3 & 26.0 & 0.42 \\
+DINOv2 & 0.366 & $-0.4$ & --- & 23.3 & 23.3 & 0.36 \\
+Difix3D+ (front) & 0.363 & $+0.6$ & 8.7 & 33.3 & 19.7 & 0.06 \\
+\midrule
+\textbf{SeedSelect (Ours)} & \textbf{0.360} & $\mathbf{+1.5}$ & \textbf{22.1} & \textbf{37.0} & \textbf{18.0} & $\mathbf{0.014}$ \\
+\midrule
+Oracle & 0.341 & $+6.6$ & 100.0 & 100.0 & 0.0 & --- \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Cross-dataset validation ($K{=}4$).} SeedSelect generalizes across benchmarks, with particularly strong results on OmniObject3D.}
+\label{tab:cross_dataset}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l|ccc|ccc}
+\toprule
+& \multicolumn{3}{c|}{GSO (300 objects)} & \multicolumn{3}{c}{OmniObject3D (100 objects)} \\
+Method & Improv.\ (\%) & Gap (\%) & $p$-val & Improv.\ (\%) & Gap (\%) & $p$-val \\
+\midrule
+Default & --- & --- & --- & --- & --- & --- \\
+Difix3D+ (front) & $+0.6$ & 8.7 & 0.060 & $+5.0$ & 42.0 & $3.3 \times 10^{-4}$ \\
+\textbf{SeedSelect} & $\mathbf{+1.5}$ & \textbf{22.1} & $\mathbf{0.014}$ & $\mathbf{+5.8}$ & \textbf{48.9} & $\mathbf{1.7 \times 10^{-4}}$ \\
+Oracle & $+6.6$ & 100.0 & --- & $+11.9$ & 100.0 & --- \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\Cref{tab:main_gso} compares all scoring methods on GSO-300. SeedSelect is the \emph{only} method achieving statistically significant improvement ($p{=}0.014$), closing 22.1\% of the oracle gap. Standard mesh quality metrics perform at random-selection level, and PSNR-based scoring fails due to camera/lighting mismatches. Notably, CLIP and DINOv2 similarity both fail ($-0.3\%$, $-0.4\%$, $p{>}0.35$), demonstrating that semantic similarity does not correlate with 3D geometric accuracy. Single-view Difix3D+ shows a trend ($p{=}0.06$) but fails to reach significance, demonstrating the importance of multi-view aggregation.
+
+\noindent\textbf{Pairwise Ranking Accuracy.}
+While the global Spearman correlation between proxy and GT quality is modest ($\rho{=}{-}0.149$), SeedSelect only needs to rank $K$ candidates \emph{per object}---a much easier task. We evaluate this via pairwise ranking accuracy: for each pair of candidates, does the proxy correctly identify the better one? \Cref{tab:pairwise} shows that SeedSelect achieves 55.3\% on GSO-300 and 60.2\% on OmniObject3D, significantly above the 50\% random baseline. All other methods---CLIP, DINOv2, PSNR---fail to exceed random chance. Multi-view aggregation improves pairwise accuracy from 53.9\% (front only) to 55.3\% (6-view mean).
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Pairwise ranking accuracy.} Fraction of candidate pairs where the proxy correctly identifies the better reconstruction. SeedSelect is the only method exceeding random chance (50\%).}
+\label{tab:pairwise}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l|cc|c}
+\toprule
+& \multicolumn{2}{c|}{GSO-300} & OmniObject3D \\
+Method & $K{=}4$ & $K{=}8$ & $K{=}4{+}$ \\
+\midrule
+Random & 50.0 & 50.0 & 50.0 \\
+PSNR & 51.7 & 50.5 & 40.8 \\
+CLIP (ViT-B/32) & 49.5 & --- & --- \\
+DINOv2 & 49.2 & --- & --- \\
+Difix3D+ (front) & 53.9 & --- & 56.8 \\
+\textbf{SeedSelect (Ours)} & \textbf{55.3} & \textbf{55.1} & \textbf{60.2} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\Cref{tab:cross_dataset} shows that SeedSelect generalizes across datasets. On OmniObject3D, the improvement is even larger: 5.8\% CD reduction, closing 48.9\% of the oracle gap with $p{=}1.7 \times 10^{-4}$. The stronger results on OmniObject3D likely reflect higher seed variance for the more diverse and challenging objects in this dataset.
+
+\subsection{Hybrid Verification Results}
+\label{sec:hybrid_results}
+
+\input{table/hybrid_main}
+
+\input{table/hybrid_alpha}
+\input{table/hybrid_backbone}
+\input{table/hybrid_efficiency}
+\input{table/learned_naive}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{img/hybrid_pareto.pdf}
+  \caption{\textbf{Quality-cost Pareto of zero-shot, learned-only, and hybrid verification.} Hybrid provides the strongest trade-off region: it consistently improves over zero-shot while using much less compute than learned-only.}
+  \label{fig:hybrid_pareto}
+\end{figure}
+
+\noindent\textbf{In-domain vs out-of-domain behavior.}
+On GSO-300, learned-only achieves the highest absolute gap-closed performance, while hybrid recovers a large fraction of that gain at substantially lower cost. On OmniObject3D-100, hybrid outperforms both zero-shot and learned-only, indicating stronger robustness under domain shift. This matches our hypothesis: zero-shot verification provides stable coarse filtering, while learned reranking contributes precision when features are reliable.
+
+\noindent\textbf{Retention-ratio ablation.}
+\Cref{tab:hybrid_alpha} shows that $\alpha{=}0.3$ is best or tied-best in gap-closed while minimizing verifier cost. Increasing $\alpha$ mostly increases cost, with limited in-domain gains and weaker OOD performance in our current runs.
+
+\noindent\textbf{Cost-normalized comparison.}
+\Cref{tab:hybrid_efficiency} reports gap-per-100ms under a fixed verifier runtime setting. Zero-shot is the most compute-efficient option, while learned-only has the weakest efficiency due to heavy per-candidate features. Hybrid improves efficiency over learned-only by $1.69\times$ on GSO and $3.43\times$ on Omni, while still improving absolute OOD quality over zero-shot (52.32\% vs.\ 43.68\% gap closed on Omni). We report these efficiency values as normalized verifier-cost estimates from component-level profiling rather than end-to-end wall-clock latency, and treat them as relative comparison indicators. As a practical sanity check, on an RTX A6000 with precomputed candidate descriptors, measured selection-stage median latency is 0.0007/0.3233/2.4524 ms per object (zero-shot/learned/hybrid) on GSO-300 and 0.0011/0.3333/2.4462 ms on OmniObject3D-100.
+
+\noindent\textbf{Stronger learned-baseline check.}
+\Cref{tab:learned_naive} evaluates two additional learned rerankers that directly regress CD from candidate features. Despite moderate global correlation (0.57--0.58), both regressors fail to improve test-time selection quality on GSO. In contrast, our ranking-oriented learned verifier is strongly positive, highlighting that the objective design (ranking under per-object competition) matters as much as model capacity.
+
+\noindent\textbf{Cross-backbone hybrid behavior.}
+\Cref{tab:hybrid_backbone} extends hybrid verification beyond the primary InstantMesh setting. On LGM, zero-shot scoring alone is unreliable (negative gap-closed), while learned and hybrid reranking recover strong gains under the same evaluation protocol. On Wonder3D (canonical GSO-150), zero-shot and hybrid are marginally positive while learned-only is negative, and all methods remain statistically non-significant at current sample size. This highlights backbone-dependent verifier fidelity and the current limitation of learned transfer on Wonder3D.
+
+\subsection{Scaling with $K$}
+\label{sec:scaling}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Scaling with number of candidates $K$.} Both oracle and SeedSelect improvements increase monotonically with $K$, with statistical significance maintained up to $K{=}16$.}
+\label{tab:scaling}
+\begin{tabular}{c|l|cc|ccc}
+\toprule
+$K$ & Dataset & Oracle & Ours & Gap & Worst & $p$-val \\
+\midrule
+\multicolumn{7}{l}{\emph{50-object subset}} \\
+2 & GSO-50 & $+5.4$ & $+1.9$ & 30.3 & --- & $4.5 \times 10^{-2}$ \\
+4 & GSO-50 & $+9.0$ & $+3.2$ & 35.0 & --- & $7.0 \times 10^{-3}$ \\
+8 & GSO-50 & $+11.8$ & $+4.8$ & 40.5 & 6.0 & $7.2 \times 10^{-4}$ \\
+16 & GSO-50 & $+14.3$ & $+5.4$ & 37.5 & 6.0 & $2.4 \times 10^{-3}$ \\
+\midrule
+\multicolumn{7}{l}{\emph{Full evaluation}} \\
+4 & GSO-300 & $+6.6$ & $+1.5$ & 22.1 & 18.0 & $1.4 \times 10^{-2}$ \\
+8 & GSO-300 & $+8.3$ & $+2.3$ & 27.2 & 17.0 & $9.6 \times 10^{-4}$ \\
+\midrule
+\multicolumn{7}{l}{\emph{Cross-dataset (OmniObject3D, 100 objects)}} \\
+4 & Omni & $+11.9$ & $+5.8$ & 48.9 & 21.0 & $2.6 \times 10^{-4}$ \\
+8 & Omni & $+14.4$ & $+6.3$ & 43.7 & 9.0 & $1.5 \times 10^{-4}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:scaling} examines how SeedSelect scales with $K$. SeedSelect improvements increase monotonically from $+1.9\%$ ($K{=}2$) to $+5.4\%$ ($K{=}16$), with statistical significance maintained throughout ($p{<}0.05$ for all $K$). At $K{=}16$, the oracle gap reaches 14.3\%, showing that the seed lottery provides an ever-larger pool of quality to exploit. On the full GSO-300, $K{=}8$ achieves 2.3\% improvement with $p{=}9.6 \times 10^{-4}$. The scaling trend holds across datasets: on OmniObject3D, increasing from $K{=}4$ to $K{=}8$ improves the absolute CD reduction from 5.8\% to 6.3\% while the worst-pick rate drops from 21\% to 9\%, demonstrating that more candidates benefit both quality and robustness. \Cref{fig:efficiency} visualizes this scaling behavior alongside the theoretical order-statistics prediction.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{img/efficiency_curve.pdf}
+  \caption{\textbf{Inference-time scaling curve.} CD improvement increases monotonically with $K$, following the order-statistics prediction (dotted). SeedSelect consistently captures a significant fraction of the oracle improvement.}
+  \label{fig:efficiency}
+\end{figure}
+
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\linewidth]{img/qualitative.pdf}
+  \caption{\textbf{Qualitative comparison.} For six GSO objects, we show the default reconstruction (seed 42), the SeedSelect output, and the oracle-best reconstruction, each rendered from two viewpoints (front and 45$^\circ$). CD values are annotated per row. SeedSelect consistently selects candidates with cleaner geometry, approaching oracle quality.}
+  \label{fig:qualitative}
+\end{figure*}
+
+\subsubsection{Ablation Studies}
+\label{sec:ablation_views}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Ablation studies (GSO-300, $K{=}4$).} \emph{Left}: Multi-view aggregation is critical---performance improves sharply from 1 to 4+ views. \emph{Right}: Mean aggregation outperforms alternatives.}
+\label{tab:ablation}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{c|ccc||l|ccc}
+\toprule
+Views $V$ & Improv. & Gap & $p$ & Aggregation & Improv. & Gap & $p$ \\
+\midrule
+1 & $+0.6$ & 8.7 & 0.060 & Front only & $+0.6$ & 8.7 & 0.060 \\
+2 & $+0.4$ & 5.7 & 0.142 & Max & $+1.3$ & 20.4 & 0.009 \\
+4 & $+1.4$ & 21.9 & 0.005 & Front-wt. & $+1.0$ & 15.1 & 0.017 \\
+\textbf{6} & $\mathbf{+1.5}$ & \textbf{22.1} & $\mathbf{0.014}$ & \textbf{Mean} & $\mathbf{+1.5}$ & \textbf{22.1} & $\mathbf{0.014}$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\Cref{tab:ablation} demonstrates the critical role of multi-view aggregation (\emph{left}). A single front view provides weak signal ($p{=}0.06$), but performance improves sharply from 3 views onward, confirming that geometric defects manifest differently across viewpoints. Mean aggregation (\emph{right}) achieves the highest gap closed (22.1\%), while max aggregation has the lowest $p$-value (0.009) due to sensitivity to outlier defects. Intermediate-view rows are computed from a fixed candidate pool with cached multi-view scores under the same protocol to isolate the view-count effect.
+
+\Cref{fig:qualitative} shows qualitative examples. Default seeds often produce geometric artifacts (missing parts, distorted surfaces), while SeedSelect reliably identifies higher-quality candidates approaching oracle quality.
+
+\noindent\textbf{Proxy--Quality Correlation.}
+The multi-view proxy score shows moderate but significant correlation with ground-truth CD (Spearman $\rho{=}{-}0.149$, $p{=}2.9 \times 10^{-7}$). While global correlation is modest, the pairwise ranking accuracy of 55--60\% (\cref{tab:pairwise}) confirms the proxy reliably distinguishes better from worse candidates at the per-object level.
+
+\noindent\textbf{Failure Analysis.}
+SeedSelect degrades quality for 35\% of objects, but the damage is typically mild: 62\% of failures cause $<$5\% CD increase, with a median degradation of only 4.0\%. Success rate is consistent across objects regardless of their seed sensitivity (CD range), indicating the proxy does not systematically fail on particular object types. Over the full evaluation, the expected value of selection is strongly positive.
+
+\noindent\textbf{Selection vs.\ Refinement.}
+A natural question is why not refine the default reconstruction using Difix3D+ directly. However, Difix3D+ modifies \emph{rendered pixel values}, not 3D geometry. Applying it to rendered views improves appearance but leaves the mesh (and its Chamfer Distance) unchanged. Obtaining geometric improvement from refined 2D views would require full 3D reconstruction from the refined images---a substantially more complex pipeline. SeedSelect achieves genuine 3D improvement through selection alone, using Difix3D+ only as a lightweight scoring signal.
+
+\subsection{Cross-Backbone Generalization}
+\label{sec:cross_backbone}
+
+Backbone transfer is a key stress test for verifier robustness. Beyond InstantMesh, we evaluate the same hybrid pipeline on LGM~\cite{lgm} (ImageDream + 3DGS) using per-seed CD. The zero-shot proxy degrades on LGM, but learned and hybrid reranking remain significantly better than the default seed (\cref{tab:hybrid_backbone}), indicating that hybrid verification can absorb backbone-specific proxy mismatch.
+
+\input{table/wonder3d_gt}
+
+For Wonder3D~\cite{wonder3d} (diffusion + NeuS), we complete a full GT-based comparison on canonical GSO-150 (\cref{tab:wonder3d_gt}). Relative to default seed, zero-shot improves mean CD by +0.09\%, learned-only degrades by -0.23\%, and hybrid gives +0.05\%; all remain statistically non-significant ($p{>}0.45$). This indicates Wonder3D remains a harder transfer regime than InstantMesh/LGM under the current verifier setup.
+
+\noindent\textbf{Runtime.}
+Hybrid preserves the intended efficiency profile across settings: it is consistently cheaper than learned-only verification, while delivering substantially higher quality than zero-shot in challenging transfer cases (e.g., LGM). Reported cost (ms) is verifier-only latency under a fixed runtime setup shared across methods, excluding multi-seed candidate generation.

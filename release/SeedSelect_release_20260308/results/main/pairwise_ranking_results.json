@@ -1,0 +1,162 @@
+{
+  "gso_300_k4": {
+    "seedselect_difix_mv_mean": {
+      "mean_pairwise_acc": 0.5527777777777777,
+      "ci_95": [
+        0.5238888888888888,
+        0.5811111111111111
+      ],
+      "mean_kendall_tau": 0.10555555555555556,
+      "tau_ci_95": [
+        0.04777777777777777,
+        0.1622222222222222
+      ],
+      "global_pairwise_acc": 0.5527777777777778,
+      "global_kendall_tau": 0.10555555555555556,
+      "concordant": 995,
+      "discordant": 805,
+      "tied": 0,
+      "n_objects": 300
+    },
+    "difix_front": {
+      "mean_pairwise_acc": 0.538888888888889,
+      "ci_95": [
+        0.508888888888889,
+        0.5672222222222223
+      ],
+      "mean_kendall_tau": 0.07777777777777778,
+      "global_pairwise_acc": 0.5388888888888889,
+      "n_objects": 300
+    },
+    "psnr": {
+      "mean_pairwise_acc": 0.5172222222222221,
+      "ci_95": [
+        0.4866666666666667,
+        0.5472361111111109
+      ],
+      "mean_kendall_tau": 0.034444444444444444,
+      "global_pairwise_acc": 0.5172222222222222,
+      "n_objects": 300
+    },
+    "clip": {
+      "mean_pairwise_acc": 0.495,
+      "ci_95": [
+        0.46777777777777774,
+        0.5222222222222221
+      ],
+      "mean_kendall_tau": -0.009999999999999997,
+      "global_pairwise_acc": 0.495,
+      "n_objects": 300
+    },
+    "dinov2": {
+      "mean_pairwise_acc": 0.49222222222222217,
+      "ci_95": [
+        0.46388888888888885,
+        0.5205555555555557
+      ],
+      "mean_kendall_tau": -0.015555555555555557,
+      "global_pairwise_acc": 0.4922222222222222,
+      "n_objects": 300
+    },
+    "random": {
+      "mean_pairwise_acc": 0.5,
+      "ci_95": [
+        0.5,
+        0.5
+      ],
+      "mean_kendall_tau": 0.0,
+      "global_pairwise_acc": 0.5,
+      "n_objects": 300
+    }
+  },
+  "gso_300_k8": {
+    "seedselect_difix_mv_mean": {
+      "mean_pairwise_acc": 0.551047619047619,
+      "ci_95": [
+        0.5253488095238095,
+        0.5757146825396825
+      ],
+      "mean_kendall_tau": 0.10209523809523809,
+      "tau_ci_95": [
+        0.05069761904761905,
+        0.15142936507936508
+      ],
+      "global_pairwise_acc": 0.5473479589003055,
+      "global_kendall_tau": 0.09469591780061094,
+      "concordant": 1971,
+      "discordant": 1630,
+      "tied": 0,
+      "n_objects": 300
+    },
+    "psnr": {
+      "mean_pairwise_acc": 0.5048275862068966,
+      "ci_95": [
+        0.4800080049261084,
+        0.529959564860427
+      ],
+      "mean_kendall_tau": 0.009655172413793106,
+      "global_pairwise_acc": 0.5007185972980741,
+      "n_objects": 290
+    },
+    "random": {
+      "mean_pairwise_acc": 0.5,
+      "ci_95": [
+        0.5,
+        0.5
+      ],
+      "mean_kendall_tau": 0.0,
+      "global_pairwise_acc": 0.5,
+      "n_objects": 300
+    }
+  },
+  "omni_k4": {
+    "seedselect_difix_mv_mean": {
+      "mean_pairwise_acc": 0.6021428571428572,
+      "ci_95": [
+        0.5635714285714286,
+        0.6396428571428571
+      ],
+      "mean_kendall_tau": 0.20428571428571426,
+      "tau_ci_95": [
+        0.12714285714285714,
+        0.27928571428571425
+      ],
+      "global_pairwise_acc": 0.6021428571428571,
+      "global_kendall_tau": 0.2042857142857143,
+      "concordant": 1686,
+      "discordant": 1114,
+      "tied": 0,
+      "n_objects": 100
+    },
+    "difix_front": {
+      "mean_pairwise_acc": 0.5682142857142858,
+      "ci_95": [
+        0.5349999999999999,
+        0.6003571428571429
+      ],
+      "mean_kendall_tau": 0.13642857142857145,
+      "global_pairwise_acc": 0.5682142857142857,
+      "n_objects": 100
+    },
+    "psnr": {
+      "mean_pairwise_acc": 0.4083333333333334,
+      "ci_95": [
+        0.35333333333333333,
+        0.465
+      ],
+      "mean_kendall_tau": -0.18333333333333332,
+      "global_pairwise_acc": 0.4083333333333333,
+      "n_objects": 100
+    },
+    "random": {
+      "mean_pairwise_acc": 0.5,
+      "ci_95": [
+        0.5,
+        0.5
+      ],
+      "mean_kendall_tau": 0.0,
+      "global_pairwise_acc": 0.5,
+      "n_objects": 100
+    }
+  }
+}

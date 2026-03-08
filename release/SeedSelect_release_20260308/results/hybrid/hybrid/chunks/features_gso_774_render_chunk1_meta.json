@@ -1,0 +1,14 @@
+{
+  "dataset": "gso",
+  "clip_model": "openai/clip-vit-large-patch14",
+  "clip_source": "input_minus_render_mean",
+  "feature_dim": 774,
+  "n_samples": 400,
+  "n_objects": 100,
+  "missing_input_objects": 0,
+  "missing_render_candidates": 0,
+  "skipped_invalid_scores": 0,
+  "skipped_missing_cd": 0,
+  "output_npz": "/root/eccv/eccv_rebuttal/results/hybrid/chunks/features_gso_774_render_chunk1.npz",
+  "lpips_available": true
+}

@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "protocol_tag": "wonder3d_hybrid_v1_2026-03-07",
+    "results_file": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/wonder3d_results_for_hybrid.json",
+    "scores_file": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/wonder3d_scores_for_hybrid.json",
+    "feature_npz": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/features_wonder3d_774.npz",
+    "model_path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/hybrid_verifier_best.pth",
+    "scaler_path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/hybrid_feature_scaler.npz",
+    "hybrid_json": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/canonical_eval_v1/hybrid_wonder3d_results_mc16_v1.json",
+    "mc_samples": 16,
+    "hybrid_best_from": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/canonical_eval_v1/hybrid_wonder3d_results_mc16_v1.json"
+  },
+  "hybrid_best_params": {
+    "alpha": 0.3,
+    "lambda_risk": 0.3
+  },
+  "results": {
+    "zero_shot": {
+      "n": 150,
+      "improvement_pct": 0.08697480452977552,
+      "oracle_improvement": 0.005091710486141321,
+      "gap_closed_pct": 3.6941878341587686,
+      "win_rate": 0.38,
+      "wins": 57,
+      "ties": 41,
+      "losses": 52,
+      "wilcoxon_pval": 0.4579614908255636
+    },
+    "learned": {
+      "n": 150,
+      "improvement_pct": -0.23207868287645486,
+      "oracle_improvement": 0.005091710486141321,
+      "gap_closed_pct": -9.857363307511458,
+      "win_rate": 0.3333333333333333,
+      "wins": 50,
+      "ties": 45,
+      "losses": 55,
+      "wilcoxon_pval": 0.6372626871236613
+    },
+    "hybrid_best": {
+      "n": 150,
+      "improvement_pct": 0.047233700148158024,
+      "oracle_improvement": 0.005091710486141321,
+      "gap_closed_pct": 2.006215034261934,
+      "win_rate": 0.38,
+      "wins": 57,
+      "ties": 40,
+      "losses": 53,
+      "wilcoxon_pval": 0.5679244869952625
+    }
+  }
+}

@@ -1,0 +1,24 @@
+# Core
+numpy>=1.24
+scipy
+pillow
+pyyaml
+
+# Rendering / geometry
+trimesh
+pyrender
+PyOpenGL
+
+# Metrics
+scikit-image
+lpips
+
+# Difix3D+ scoring
+diffusers>=0.25.0
+transformers>=4.36.0
+accelerate
+
+# Torch (install appropriate CUDA build separately)
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+torch>=2.1.0
+torchvision

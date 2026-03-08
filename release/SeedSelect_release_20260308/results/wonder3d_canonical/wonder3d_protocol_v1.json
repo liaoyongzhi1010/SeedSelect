@@ -1,0 +1,53 @@
+{
+  "protocol_version": "wonder3d_hybrid_v1_2026-03-07",
+  "status": "locked",
+  "description": "Canonical Wonder3D hybrid evaluation protocol for paper-facing numbers.",
+  "dataset": {
+    "name": "Wonder3D on GSO",
+    "split_json": "/root/eccv/DepthRefine3D/configs/gso_eval_000_300.json",
+    "seeds": [
+      0,
+      1,
+      2,
+      42
+    ],
+    "default_seed": 42,
+    "k": 4,
+    "note": "Current frozen artifacts contain n=150 valid objects after GT/proxy alignment."
+  },
+  "inputs": {
+    "results_file": "/root/eccv/eccv_rebuttal/results/hybrid/wonder3d_results_for_hybrid.json",
+    "scores_file": "/root/eccv/eccv_rebuttal/results/hybrid/wonder3d_scores_for_hybrid.json",
+    "feature_npz": "/root/eccv/eccv_rebuttal/results/hybrid/features_wonder3d_774.npz",
+    "model_path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_verifier_best.pth",
+    "scaler_path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_feature_scaler.npz"
+  },
+  "evaluation": {
+    "script_eval_hybrid": "/root/eccv/eccv_rebuttal/scripts/14_eval_wonder3d_hybrid.py",
+    "script_export_pvalues": "/root/eccv/eccv_rebuttal/scripts/export_wonder3d_hybrid_pvalues.py",
+    "script_selector_core": "/root/eccv/eccv_rebuttal/scripts/hybrid_selector.py",
+    "alphas": [
+      0.3,
+      0.4,
+      0.5
+    ],
+    "lambdas": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "mc_samples": 16,
+    "hybrid_best_rule": "Sort by (gap_closed_pct desc, win_rate desc); pick index 0.",
+    "device": "cuda"
+  },
+  "statistics": {
+    "test": "Wilcoxon signed-rank",
+    "details": "Use non-zero per-object diffs of (baseline_cd - selected_cd). If non-zero count <= 10, set p=1.0.",
+    "multiple_comparison_correction": "none"
+  },
+  "output_policy": {
+    "must_use_versioned_output_path": true,
+    "must_not_overwrite_previous_snapshots": true,
+    "paper_table_source_must_reference_canonical_pointer": true
+  }
+}

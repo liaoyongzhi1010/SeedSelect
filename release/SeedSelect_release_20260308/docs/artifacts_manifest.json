@@ -1,0 +1,728 @@
+{
+  "manifest_version": "0.1.0",
+  "generated_at_utc": "2026-03-07T17:19:35Z",
+  "workspace_root": "/root/eccv",
+  "scope": {
+    "paper_root": "/root/eccv/eccv2026/paper",
+    "code_roots": [
+      "/root/eccv/DepthRefine3D",
+      "/root/eccv/eccv_rebuttal"
+    ],
+    "aux_roots": [
+      "/root/eccv/deliverables/seedselect_hybrid_repo"
+    ]
+  },
+  "snapshot_policy": {
+    "paper_hybrid_snapshot": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_experiment_results_full.json",
+    "known_conflicting_snapshot": "/root/eccv/deliverables/seedselect_hybrid_repo/results/hybrid/hybrid_experiment_results_full.json",
+    "note": "Do not mix snapshots when exporting paper numbers."
+  },
+  "repo_commits": {
+    "/root/eccv/DepthRefine3D": "eeb3ac0",
+    "/root/eccv/eccv2026/paper": "da8c09c",
+    "/root/eccv/eccv_rebuttal": null,
+    "/root/eccv/deliverables/seedselect_hybrid_repo": null
+  },
+  "artifacts": [
+    {
+      "id": "paper.main",
+      "path": "/root/eccv/eccv2026/paper/main.tex",
+      "exists": true,
+      "type": "paper_source",
+      "status": "primary",
+      "used_by": [
+        "all_sections"
+      ],
+      "note": "Paper entry file",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 1673,
+      "sha256": "c92ec297a7001a356008255bb5cc529c548e7565027804b8b4c34a0cd9921fc8"
+    },
+    {
+      "id": "paper.exp_section",
+      "path": "/root/eccv/eccv2026/paper/sec/4_experiments.tex",
+      "exists": true,
+      "type": "paper_source",
+      "status": "primary",
+      "used_by": [
+        "tab:sensitivity",
+        "tab:main_gso",
+        "tab:cross_dataset",
+        "tab:pairwise",
+        "tab:hybrid_main",
+        "tab:hybrid_alpha",
+        "tab:hybrid_backbone",
+        "tab:hybrid_efficiency",
+        "tab:learned_naive",
+        "tab:wonder3d_gt",
+        "tab:scaling",
+        "tab:ablation"
+      ],
+      "note": "Main experiment claims",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 19252,
+      "sha256": "0a760e0d9e38806ade15c8b420e9fc935429c6d1b408a8b3628ca9de7da79779"
+    },
+    {
+      "id": "paper.tab.hybrid_main",
+      "path": "/root/eccv/eccv2026/paper/table/hybrid_main.tex",
+      "exists": true,
+      "type": "paper_table",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_main"
+      ],
+      "note": "Hybrid main table in paper",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 713,
+      "sha256": "025b1c6ead331c9f1c2c9518ee317e2a976ed539f9e7288f6d60b0fec8d3b1ba"
+    },
+    {
+      "id": "paper.tab.hybrid_alpha",
+      "path": "/root/eccv/eccv2026/paper/table/hybrid_alpha.tex",
+      "exists": true,
+      "type": "paper_table",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_alpha"
+      ],
+      "note": "Hybrid alpha ablation table",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 671,
+      "sha256": "c86dd636b1ad28b9a2b3ce9ef793e1ebd9927015b5f2cf7d2885354eb945e3b8"
+    },
+    {
+      "id": "paper.tab.hybrid_backbone",
+      "path": "/root/eccv/eccv2026/paper/table/hybrid_backbone.tex",
+      "exists": true,
+      "type": "paper_table",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_backbone"
+      ],
+      "note": "Cross-backbone table",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 896,
+      "sha256": "36d838f72355ef8a76df663c55763b567d5fdc25c48f93625d71894ff8893bc1"
+    },
+    {
+      "id": "paper.tab.hybrid_efficiency",
+      "path": "/root/eccv/eccv2026/paper/table/hybrid_efficiency.tex",
+      "exists": true,
+      "type": "paper_table",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_efficiency"
+      ],
+      "note": "Efficiency table",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 750,
+      "sha256": "caaa7be6e08e00f56ef928d9efa0756f67e14b9c1217174ce4a323021a5bb301"
+    },
+    {
+      "id": "paper.tab.learned_naive",
+      "path": "/root/eccv/eccv2026/paper/table/learned_naive.tex",
+      "exists": true,
+      "type": "paper_table",
+      "status": "primary",
+      "used_by": [
+        "tab:learned_naive"
+      ],
+      "note": "Naive learned baseline table",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 845,
+      "sha256": "4ce5ebb96b0ea425655599cfc8568917e4fbacbeedf8888597c445eecd88f9bc"
+    },
+    {
+      "id": "paper.tab.wonder3d_gt",
+      "path": "/root/eccv/eccv2026/paper/table/wonder3d_gt.tex",
+      "exists": true,
+      "type": "paper_table",
+      "status": "primary",
+      "used_by": [
+        "tab:wonder3d_gt"
+      ],
+      "note": "Wonder3D GT table (currently inconsistent with latest result files)",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 770,
+      "sha256": "612bf47761706e5a5a30fb3d20e92fa4726c768e1f9a44c06a1b2a75f7875bea"
+    },
+    {
+      "id": "paper.tab.hybrid_key_numbers",
+      "path": "/root/eccv/eccv2026/paper/table/hybrid_key_numbers.json",
+      "exists": true,
+      "type": "paper_asset",
+      "status": "primary",
+      "used_by": [
+        "hybrid_claims"
+      ],
+      "note": "Exported key hybrid numbers used by paper text",
+      "repo_root": "/root/eccv/eccv2026/paper",
+      "repo_commit": "da8c09c",
+      "size_bytes": 566,
+      "sha256": "7ca8e8d8ebb459f368377ec8c34569f1b5844bfed621e74a0a9106368535ad0a"
+    },
+    {
+      "id": "res.gso.comprehensive",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/gso_full/comprehensive_analysis.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:sensitivity",
+        "tab:main_gso(ours row)",
+        "tab:cross_dataset(gso)",
+        "tab:ablation(N=1/6)",
+        "correlation",
+        "failure_context"
+      ],
+      "note": "Contains difix_front and difix_mv summaries for GSO-300",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 126619,
+      "sha256": "939aad8b12fbf7c8959316b8ae38ba4e139aabf85690a49ccf98bfc3c6298637"
+    },
+    {
+      "id": "res.gso.rescore_v2",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/gso_full/rescore_v2.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:main_gso(cpu_baselines)"
+      ],
+      "note": "Random/PSNR/consensus/geometric/smoothness baselines",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 3193,
+      "sha256": "3d224549481d1e7718dd46b5de9ca9a71be92230b3f3d8d9375fc1a0eda468fb"
+    },
+    {
+      "id": "res.gso.clip_scoring",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/gso_full/clip_scoring_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:main_gso(CLIP,DINOv2)"
+      ],
+      "note": "CLIP/DINO baseline results",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 193515,
+      "sha256": "6c9a8edd032a207d35a1fec55e8e5434166f019192d1fac2041698a2ca187bd1"
+    },
+    {
+      "id": "res.omni.difix",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/omni_full/difix_multiview_scores.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:sensitivity(omni)",
+        "tab:cross_dataset(omni)",
+        "tab:pairwise(omni context)"
+      ],
+      "note": "Omni-100 K=8 difix summary; K=4 in paper requires subset policy",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 158798,
+      "sha256": "86be23b975b8a72fbfd06f73d472cfab814c578220e79251d36dee8342237751"
+    },
+    {
+      "id": "res.pairwise",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/pairwise_ranking_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:pairwise"
+      ],
+      "note": "Pairwise ranking accuracy numbers",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 3982,
+      "sha256": "5e506f78757adfb73907066e071f5e8780346e3d1b5019c43d8af54dea2e06f6"
+    },
+    {
+      "id": "res.ablation",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/ablation_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:scaling(subset K=2/4/8)",
+        "tab:ablation"
+      ],
+      "note": "Contains K ablation and view ablation; K stats use t-test + Wilcoxon fields",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 5523,
+      "sha256": "9fa715e9ab22d0200bca013dece43f5b51d441ff4872ec63d7eb969fa35c97dc"
+    },
+    {
+      "id": "res.gso_full_k8_scores",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/gso_full_k8/difix_multiview_scores.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:scaling(GSO-300 K=8)"
+      ],
+      "note": "File labeled n=300 but underlying per-object seed completeness is mixed",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 69333,
+      "sha256": "32b5a87da4d81f82c2e06d71af82e6f4032b049f85f01dceb6f794e9d862de8c"
+    },
+    {
+      "id": "res.gso_full_k8_results",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/gso_full_k8/results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "risk",
+      "used_by": [
+        "tab:scaling(GSO-300 K=8 validity check)"
+      ],
+      "note": "Not all objects have 8 complete seeds",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 407803,
+      "sha256": "fdd971aba8ac6a54a18c2a8af1429f9785e0b8fc50eb515e5a95cba1cf28e311"
+    },
+    {
+      "id": "res.gso_k8_50",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/gso_k8/results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:scaling(GSO-50 K=16 provenance)"
+      ],
+      "note": "50-object subset with 16 seeds/object",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 113015,
+      "sha256": "d4f28d5f548e7a5780d1acfde286caa31db544b72e5a8169b1cb46e4eda9f153"
+    },
+    {
+      "id": "res.failure",
+      "path": "/root/eccv/DepthRefine3D/outputs/multiseed/failure_analysis_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "failure_analysis_text"
+      ],
+      "note": "Failure rate and degradation stats",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 1882,
+      "sha256": "c45a7f4eef2d876ff9438ec846d7838bbfd699d96ff5cd5ab8921c40501b6a9f"
+    },
+    {
+      "id": "res.hybrid.full",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_experiment_results_full.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_main",
+        "tab:hybrid_alpha",
+        "tab:hybrid_efficiency",
+        "paper.hybrid_claims"
+      ],
+      "note": "Paper-export source for hybrid tables",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 23501,
+      "sha256": "9309fcf5c378f26d04e437f6e6565947a02efc08b825114ed7a2901fc3e49fe7"
+    },
+    {
+      "id": "res.hybrid.split30",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_experiment_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "risk",
+      "used_by": [
+        "sanity_check"
+      ],
+      "note": "GSO uses 30 test objects from hybrid_split; differs substantially from full file",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 23038,
+      "sha256": "ce6d53f254d5a62d7169840517cf17be080f874cc65429687b480a50cbb3a1bc"
+    },
+    {
+      "id": "res.hybrid.widegrid",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_experiment_results_widegrid.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "secondary",
+      "used_by": [
+        "sanity_check"
+      ],
+      "note": "Alternative hyperparameter sweep snapshot",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 205681,
+      "sha256": "5c143fa8928a1838e10b20a4a411ee8ad0b38c4551e76835c228103b7d74e875"
+    },
+    {
+      "id": "res.hybrid.cross_backbone",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_cross_backbone_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_backbone(InstantMesh/LGM rows)"
+      ],
+      "note": "Cross-backbone metrics for InstantMesh and LGM",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 34375,
+      "sha256": "a687861261d4ba3ef32a0a44d3506959ba5d58c4222c193cc83c957897a5007d"
+    },
+    {
+      "id": "res.hybrid.cross_backbone_md",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/HYBRID_CROSS_BACKBONE_SUMMARY.md",
+      "exists": true,
+      "type": "result_md",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_backbone(p-values)"
+      ],
+      "note": "Contains p-values shown in table",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 844,
+      "sha256": "c6540eec784f58841488f6f3102a9b2628413cb3edd137d1c814765d02e4cc39"
+    },
+    {
+      "id": "res.learned.naive_comp",
+      "path": "/root/eccv/eccv_rebuttal/results/learned_verifier/selection_model_comparison.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "primary",
+      "used_by": [
+        "tab:learned_naive"
+      ],
+      "note": "Simple/deep CD regression baselines",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 781,
+      "sha256": "cb68f4c55b3c9cea250ad625144b74c8fd608ef40f521bf08e75cff956633598"
+    },
+    {
+      "id": "res.hybrid.training",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_training_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "risk",
+      "used_by": [
+        "method_context"
+      ],
+      "note": "Shows train/val/test metrics for learned verifier; potential split interpretation risk",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 7013,
+      "sha256": "ff51c3e875a7d9dfa86953edd54b5ae9905a150dc4fd75fb20578f5cbed66c7f"
+    },
+    {
+      "id": "res.hybrid.split",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_split.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "risk",
+      "used_by": [
+        "split_audit"
+      ],
+      "note": "Object-level split file (train/val/test = 240/30/30 objects)",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 23864,
+      "sha256": "3b623c5e9113862d06d6e9cdfa72c265bbb026e4e1d63ef79307949e185134a2"
+    },
+    {
+      "id": "res.w3d.gt_eval_latest",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/wonder3d_gt_eval_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "conflicting",
+      "used_by": [
+        "tab:wonder3d_gt_audit"
+      ],
+      "note": "Latest GT eval appears n=150 with small/non-significant gains",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 41817,
+      "sha256": "b2c44b65ec82460b4b3c3e97a2357a5ee95e3667dd437624606812d2047c75dc"
+    },
+    {
+      "id": "res.w3d.hybrid_results",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_wonder3d_results.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "conflicting",
+      "used_by": [
+        "tab:hybrid_backbone(wonder3d row audit)"
+      ],
+      "note": "Hybrid results currently not matching paper Wonder3D row",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 10619,
+      "sha256": "27e25c08c925e7aeb7df385655678a9d8e004e933de75e1bf8e796b5c35b1f79"
+    },
+    {
+      "id": "res.w3d.pvalues_50",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_wonder3d_pvalues.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "conflicting",
+      "used_by": [
+        "tab:wonder3d_gt_old_snapshot"
+      ],
+      "note": "Older 50-object p-value export",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 805,
+      "sha256": "8e8782a75dd3ff8dd686e91f444005bdbebad26874ef565c5ef3774721264f59"
+    },
+    {
+      "id": "res.w3d.pvalues_150_gpuenv",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_wonder3d_pvalues_gpuenv.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "conflicting",
+      "used_by": [
+        "tab:wonder3d_gt_latest_snapshot"
+      ],
+      "note": "GPU env export with n=150 and different signs for learned/hybrid",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 1038,
+      "sha256": "801fb50b00a4f466b3695adac4f7946d518c283d380934b4dd75c20da3fde734"
+    },
+    {
+      "id": "res.deliverables.hybrid_full",
+      "path": "/root/eccv/deliverables/seedselect_hybrid_repo/results/hybrid/hybrid_experiment_results_full.json",
+      "exists": true,
+      "type": "result_json",
+      "status": "conflicting",
+      "used_by": [
+        "snapshot_diff_audit"
+      ],
+      "note": "Different hybrid best numbers vs eccv_rebuttal snapshot",
+      "repo_root": "/root/eccv/deliverables/seedselect_hybrid_repo",
+      "repo_commit": null,
+      "size_bytes": 23642,
+      "sha256": "bd3970f128361eb8cb5e4b689878104111ee1d8c7d2ae449cb34a85c5e912bf9"
+    },
+    {
+      "id": "script.export_hybrid_to_paper",
+      "path": "/root/eccv/eccv_rebuttal/scripts/11_export_hybrid_to_paper.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "tab:hybrid_main",
+        "tab:hybrid_alpha",
+        "paper hybrid key numbers"
+      ],
+      "note": "Exports hybrid tables/figures into paper assets",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 7339,
+      "sha256": "b26877fd455be15035071e2b04594ddc5d51031df1a0748ac712dc74909f9c89"
+    },
+    {
+      "id": "script.run_hybrid_experiments",
+      "path": "/root/eccv/eccv_rebuttal/scripts/10_run_hybrid_experiments.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "res.hybrid.*"
+      ],
+      "note": "Runs hybrid sweeps for GSO/Omni",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 8828,
+      "sha256": "78f0e386133f100553f6ff2d9117a8bd73880f01e9c016dd47ee6a1e6d37dae6"
+    },
+    {
+      "id": "script.hybrid_selector",
+      "path": "/root/eccv/eccv_rebuttal/scripts/hybrid_selector.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "hybrid_method"
+      ],
+      "note": "Core selection/evaluation logic",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 12552,
+      "sha256": "e252bd3491ce1bcea438d9fa289fd7e89e702fedacdf8a4cf535998853d19de4"
+    },
+    {
+      "id": "script.hybrid_utils",
+      "path": "/root/eccv/eccv_rebuttal/scripts/_hybrid_utils.py",
+      "exists": true,
+      "type": "script",
+      "status": "risk",
+      "used_by": [
+        "runtime_claims"
+      ],
+      "note": "Runtime numbers are estimated via constants, not measured wall-clock",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 5276,
+      "sha256": "12fcca05feac016e4866ffb0e5c06c9cd433a878b9d88b66488769b84006f5d5"
+    },
+    {
+      "id": "script.eval_w3d_gt",
+      "path": "/root/eccv/eccv_rebuttal/scripts/13_eval_wonder3d_gt_cd.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "res.w3d.gt_eval_latest"
+      ],
+      "note": "Wonder3D GT evaluation exporter",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 8756,
+      "sha256": "b83301e03266e2d77042c928bd994528f7f60f6fe0c70fad452c0903f6cf3122"
+    },
+    {
+      "id": "script.eval_w3d_hybrid",
+      "path": "/root/eccv/eccv_rebuttal/scripts/14_eval_wonder3d_hybrid.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "res.w3d.hybrid_results"
+      ],
+      "note": "Wonder3D zero/learned/hybrid evaluation",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 3433,
+      "sha256": "c494b603689e8d54b368dfbc1d211405966e5ba30e5924a8fc86c71efba3bbd6"
+    },
+    {
+      "id": "script.export_w3d_pvalues",
+      "path": "/root/eccv/eccv_rebuttal/scripts/export_wonder3d_hybrid_pvalues.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "res.w3d.pvalues_150_gpuenv"
+      ],
+      "note": "Wonder3D p-value export helper",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 4789,
+      "sha256": "90a3cc5ebab31e2f9c5091afb90714c4c70df91d0ee1f12ad6a6220c16405bfc"
+    },
+    {
+      "id": "script.compute_ablations",
+      "path": "/root/eccv/DepthRefine3D/scripts/compute_ablations.py",
+      "exists": true,
+      "type": "script",
+      "status": "risk",
+      "used_by": [
+        "tab:scaling",
+        "tab:ablation"
+      ],
+      "note": "K/view ablations; mixed use of t-test and Wilcoxon",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 16490,
+      "sha256": "8b5045ab8c1a399180e117a3543db66ee6b9d19c36f2bbc204f22f27dc666474"
+    },
+    {
+      "id": "script.score_k8_gso300",
+      "path": "/root/eccv/DepthRefine3D/scripts/score_k8_gso300.py",
+      "exists": true,
+      "type": "script",
+      "status": "risk",
+      "used_by": [
+        "tab:scaling(GSO-300 K=8)"
+      ],
+      "note": "Allows partial renders and can proceed with incomplete objects",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 6926,
+      "sha256": "aa6b0afe6881e70c4b5a924477bac5b3dcf989ab948eee6502d462044e1c97f6"
+    },
+    {
+      "id": "script.comprehensive_analysis",
+      "path": "/root/eccv/DepthRefine3D/scripts/comprehensive_analysis.py",
+      "exists": true,
+      "type": "script",
+      "status": "primary",
+      "used_by": [
+        "res.gso.comprehensive"
+      ],
+      "note": "Main GSO comprehensive analysis script",
+      "repo_root": "/root/eccv/DepthRefine3D",
+      "repo_commit": "eeb3ac0",
+      "size_bytes": 10038,
+      "sha256": "f82aba9c9462639ecbbfa844254e1e280fabd91636cff267c0ba959ddf0952bc"
+    },
+    {
+      "id": "log.w3d_expand100",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/logs/run_wonder3d_expand100_nohup.log",
+      "exists": true,
+      "type": "log",
+      "status": "conflicting",
+      "used_by": [
+        "w3d_snapshot_audit"
+      ],
+      "note": "Shows older n=50 summary",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 265729,
+      "sha256": "4fb7fa17a99152e337f55514dec16b02f7d7f88c5da1d0395f55be30cd3fc4b5"
+    },
+    {
+      "id": "log.w3d_expand300",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/logs/wonder3d_expand300_pipeline_20260305_135835.log",
+      "exists": true,
+      "type": "log",
+      "status": "conflicting",
+      "used_by": [
+        "w3d_snapshot_audit"
+      ],
+      "note": "Shows n=150 summary",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 572393,
+      "sha256": "4da04ed0d8a63d2fdb1859c284fe807b313f485b855262ff140bce307d91440f"
+    },
+    {
+      "id": "log.w3d_queue_syntax_err",
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/logs/queue_expand300_after_expand100_20260305_082830.log",
+      "exists": true,
+      "type": "log",
+      "status": "risk",
+      "used_by": [
+        "repro_audit"
+      ],
+      "note": "Shows heredoc/shell syntax failure during p-value phase",
+      "repo_root": "/root/eccv/eccv_rebuttal",
+      "repo_commit": null,
+      "size_bytes": 584471,
+      "sha256": "9ce397e4a54917065013fbb322d6615d8ad876dca781a7bdaf1bcf1caf4f216b"
+    }
+  ]
+}

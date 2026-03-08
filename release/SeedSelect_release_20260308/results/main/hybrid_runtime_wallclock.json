@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "generated_at_utc": "2026-03-07T17:14:38Z",
+    "hostname": "af4faa539d7f",
+    "platform": "Linux-5.15.0-122-generic-x86_64-with-glibc2.35",
+    "python": "3.10.19",
+    "torch": "2.1.2+cu121",
+    "cuda_available": true,
+    "device": "cuda",
+    "warmup_runs": 1,
+    "measure_runs": 6,
+    "mc_samples": 8,
+    "note": "Wall-clock for selection stage only, measured with precomputed candidate descriptors."
+  },
+  "gso": {
+    "alpha": 0.3,
+    "lambda_risk": 0.1,
+    "zero_shot": {
+      "median_total_ms": 0.21712109446525574,
+      "mean_total_ms": 0.21708756685256958,
+      "std_total_ms": 0.0005123233614998091,
+      "median_per_object_ms": 0.0007237369815508524,
+      "median_per_candidate_ms": 0.0001809342453877131,
+      "n_objects": 300,
+      "mean_k": 4.0
+    },
+    "learned": {
+      "median_total_ms": 96.98781371116638,
+      "mean_total_ms": 97.52396990855534,
+      "std_total_ms": 1.2586593946987366,
+      "median_per_object_ms": 0.3232927123705546,
+      "median_per_candidate_ms": 0.08082317809263866,
+      "n_objects": 300,
+      "mean_k": 4.0
+    },
+    "hybrid": {
+      "median_total_ms": 735.7345409691334,
+      "mean_total_ms": 736.4276610314846,
+      "std_total_ms": 1.7045137989581525,
+      "median_per_object_ms": 2.4524484698971114,
+      "median_per_candidate_ms": 0.6131121174742779,
+      "n_objects": 300,
+      "mean_k": 4.0
+    }
+  },
+  "omni": {
+    "alpha": 0.3,
+    "lambda_risk": 0.1,
+    "zero_shot": {
+      "median_total_ms": 0.1144707202911377,
+      "mean_total_ms": 0.11623899141947429,
+      "std_total_ms": 0.003687675301226256,
+      "median_per_object_ms": 0.001144707202911377,
+      "median_per_candidate_ms": 0.00014308840036392212,
+      "n_objects": 100,
+      "mean_k": 8.0
+    },
+    "learned": {
+      "median_total_ms": 33.33447501063347,
+      "mean_total_ms": 33.35098301370939,
+      "std_total_ms": 0.04009607632208512,
+      "median_per_object_ms": 0.3333447501063347,
+      "median_per_candidate_ms": 0.041668093763291836,
+      "n_objects": 100,
+      "mean_k": 8.0
+    },
+    "hybrid": {
+      "median_total_ms": 244.6180209517479,
+      "mean_total_ms": 244.6978228787581,
+      "std_total_ms": 0.3469733117619545,
+      "median_per_object_ms": 2.446180209517479,
+      "median_per_candidate_ms": 0.30577252618968487,
+      "n_objects": 100,
+      "mean_k": 8.0
+    }
+  }
+}

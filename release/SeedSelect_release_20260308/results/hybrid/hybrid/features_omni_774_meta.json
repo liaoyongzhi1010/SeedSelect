@@ -1,0 +1,10 @@
+{
+  "dataset": "omni",
+  "feature_dim": 774,
+  "n_samples": 800,
+  "n_objects": 100,
+  "lpips_available": false,
+  "clip_model": "openai/clip-vit-large-patch14",
+  "clip_source": "input_minus_render_mean",
+  "output_npz": "/root/eccv/eccv_rebuttal/results/hybrid/features_omni_774.npz"
+}

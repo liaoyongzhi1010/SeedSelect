@@ -1,0 +1,83 @@
+{
+  "canonical_id": "wonder3d_hybrid_v1_20260307",
+  "created_utc": "2026-03-07T09:06:00Z",
+  "updated_utc": "2026-03-07T09:19:30Z",
+  "status": "READY",
+  "status_reason": "Locked-protocol recompute completed on GPU in non-sandbox runtime; canonical outputs and checksums are fixed.",
+  "protocol": {
+    "path": "/root/eccv/eccv_rebuttal/results/hybrid/protocols/wonder3d_protocol_v1.json",
+    "sha256": "16787857c5e878b9422159438571c6a069ac105b4e3b9188d383fa5d1e50aac9"
+  },
+  "snapshot": {
+    "root": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z",
+    "sha256_manifest": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/SHA256SUMS"
+  },
+  "frozen_inputs": {
+    "results_file": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/wonder3d_results_for_hybrid.json",
+      "sha256": "a5dae5e0658bf49709bf131a459cb1d72e0e2ddc0001e61e7332ca3500d2f8e0"
+    },
+    "scores_file": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/wonder3d_scores_for_hybrid.json",
+      "sha256": "3e5c3ebac6338851124790a5a835a0198dc1efc82879cc25412857f8dc990f5e"
+    },
+    "feature_npz": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/features_wonder3d_774.npz",
+      "sha256": "bb205085a60a324dcac3e3370fad1e86d579be8d13b2109d8c2cbc292a63ea63"
+    },
+    "model_path": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/hybrid_verifier_best.pth",
+      "sha256": "92df0241c7806a5d764b7604d67c987482c954631b46aefe84b6834776ed3658"
+    },
+    "scaler_path": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/files/hybrid_feature_scaler.npz",
+      "sha256": "4401ad57217de917fd9004f10e117408ca5ebc4b15b0d9c32303ac2f63ae8c3e"
+    }
+  },
+  "canonical_outputs": {
+    "dir": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/canonical_eval_v1",
+    "results_json": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/canonical_eval_v1/hybrid_wonder3d_results_mc16_v1.json",
+      "sha256": "03710dd458056408de91ce041ec284d983a0fc1571dfbb5ea3a3f7a00c4b3dc4"
+    },
+    "pvalues_json": {
+      "path": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/canonical_eval_v1/hybrid_wonder3d_pvalues_mc16_v1.json",
+      "sha256": "60f26a949eb3aaa2aa85994e677def9974ba1707f460968d6f8a933a15d81f7e"
+    },
+    "checksum_manifest": "/root/eccv/eccv_rebuttal/results/hybrid/snapshots/wonder3d_20260307_084332Z/canonical_eval_v1/SHA256SUMS"
+  },
+  "canonical_metrics": {
+    "zero_shot": {
+      "n": 150,
+      "improvement_pct": 0.08697480452977552,
+      "gap_closed_pct": 3.6941878341587686,
+      "wilcoxon_pval": 0.4579614908255636
+    },
+    "learned": {
+      "n": 150,
+      "improvement_pct": -0.23207868287645486,
+      "gap_closed_pct": -9.857363307511458,
+      "wilcoxon_pval": 0.6372626871236613
+    },
+    "hybrid_best": {
+      "alpha": 0.3,
+      "lambda_risk": 0.3,
+      "n": 150,
+      "improvement_pct": 0.047233700148158024,
+      "gap_closed_pct": 2.006215034261934,
+      "wilcoxon_pval": 0.5679244869952625
+    }
+  },
+  "paper_use_policy": {
+    "allow_paper_table_use": true,
+    "required_citation": [
+      "Use canonical_outputs.pvalues_json as primary Wonder3D table source.",
+      "Report protocol_version and mc_samples=16 in table caption or appendix."
+    ],
+    "do_not_use": [
+      "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_wonder3d_pvalues.json",
+      "/root/eccv/eccv_rebuttal/results/hybrid/hybrid_wonder3d_pvalues_gpuenv.json"
+    ]
+  },
+  "debug_note": "Previous CUDA false-negative was caused by sandbox runtime restrictions; GPU is available in non-sandbox execution."
+}
